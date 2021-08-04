@@ -13,7 +13,7 @@ public class WikipediaArticle {
 
     WebDriver driver;
 
-    public WikipediaArticle (WebDriver driver, String URL_Base) {
+    public WikipediaArticle(WebDriver driver, String URL_Base) {
         this.driver = driver;
         this.URL_Base = URL_Base;
     }
@@ -38,11 +38,11 @@ public class WikipediaArticle {
         System.out.println("Road to philosophy is " + numberOfTransitions + " click(s) long.");
     }
 
-    public void goToURL (String endOfURL) {
+    public void goToURL(String endOfURL) {
         driver.navigate().to(URL_Base + endOfURL);
     }
 
-    public void assertWeAreOnPhilosophySite () {
+    public void assertWeAreOnPhilosophySite() {
         Assertions.assertTrue(driver.getCurrentUrl().endsWith(PHILOSOPHY_URL_ENDING_CZECH) || driver.getCurrentUrl().endsWith(PHILOSOPHY_URL_ENDING_ENGLISH));
     }
 
