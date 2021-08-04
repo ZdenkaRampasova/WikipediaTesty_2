@@ -56,6 +56,17 @@ public class TestWikipediaCzech {
         article.assertWeAreOnPhilosophySite();
     }
 
+    @Test
+    public void doesRandomRoadLeadToPhilosophy() {
+        System.out.println("I'm running test with random czech beginning article.");
+
+        article.goToURL("Special:Random");
+
+        article.clickOnFirstLinkUntilPhilosophyAndPrintNumberOfTransitions();
+
+        article.assertWeAreOnPhilosophySite();
+    }
+
     @AfterEach
     public void tearDown() {
         driver.close();
