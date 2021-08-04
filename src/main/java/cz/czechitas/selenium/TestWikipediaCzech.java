@@ -8,7 +8,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class TestWikipedia {
+public class TestWikipediaCzech {
+    public static final String URL_BASE_CZECH = "https://cs.wikipedia.org/wiki/";
     WebDriver driver;
     WikipediaArticle article;
 
@@ -19,11 +20,13 @@ public class TestWikipedia {
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-        article = new WikipediaArticle(driver);
+        article = new WikipediaArticle(driver, URL_BASE_CZECH);
     }
 
     @Test
     public void notAllRoadsLeadToPhilosophy() {
+        System.out.println("I'm running test with \"Testování softwaru\" beginning article.");
+
         article.goToURL("Testov%C3%A1n%C3%AD_softwaru");
 
         article.clickOnFirstLinkUntilPhilosophyAndPrintNumberOfTransitions();
@@ -33,6 +36,8 @@ public class TestWikipedia {
 
     @Test
     public void allRoadsLeadToRoads() {
+        System.out.println("I'm running test with \"Platón\" beginning article.");
+
         article.goToURL("Plat%C3%B3n");
 
         article.clickOnFirstLinkUntilPhilosophyAndPrintNumberOfTransitions();
@@ -42,6 +47,8 @@ public class TestWikipedia {
 
     @Test
     public void atLeastOneRoadLeadsToPhilosophy() {
+        System.out.println("I'm running test with \"Filosof\" beginning article.");
+
         article.goToURL("Filosof");
 
         article.clickOnFirstLinkUntilPhilosophyAndPrintNumberOfTransitions();

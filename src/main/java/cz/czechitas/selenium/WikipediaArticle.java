@@ -6,14 +6,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class WikipediaArticle {
-    public static final String URL_BASE = "https://cs.wikipedia.org/wiki/";
-    public static final String PHILOSOPHY_URL_ENDING = "/Filosofie";
+    String URL_Base;
+    public static final String PHILOSOPHY_URL_ENDING_CZECH = "/Filosofie";
+    public static final String PHILOSOPHY_URL_ENDING_ENGLISH = "/Philosophy";
     public static final String FIRST_LINK_XPATH = "//div/p/a[@href]";
 
     WebDriver driver;
 
-    public WikipediaArticle (WebDriver driver) {
+    public WikipediaArticle (WebDriver driver, String URL_Base) {
         this.driver = driver;
+        this.URL_Base = URL_Base;
     }
 
     public void transitionToFirstLink() {
@@ -37,14 +39,14 @@ public class WikipediaArticle {
     }
 
     public void goToURL (String endOfURL) {
-        driver.navigate().to(URL_BASE + endOfURL);
+        driver.navigate().to(URL_Base + endOfURL);
     }
 
     public void assertWeAreOnPhilosophySite () {
-        Assertions.assertTrue(driver.getCurrentUrl().endsWith(PHILOSOPHY_URL_ENDING));
+        Assertions.assertTrue(driver.getCurrentUrl().endsWith(PHILOSOPHY_URL_ENDING_CZECH) || driver.getCurrentUrl().endsWith(PHILOSOPHY_URL_ENDING_ENGLISH));
     }
 
     public boolean areWeOnPhilosophySite() {
-        return driver.getCurrentUrl().endsWith(PHILOSOPHY_URL_ENDING);
+        return driver.getCurrentUrl().endsWith(PHILOSOPHY_URL_ENDING_CZECH) || driver.getCurrentUrl().endsWith(PHILOSOPHY_URL_ENDING_ENGLISH);
     }
 }
